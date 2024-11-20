@@ -30,10 +30,10 @@ public class PartyMemberUI : MonoBehaviour
 
     public void SetSelected(bool selected)
     {
-        /*if (selected)
-            nameText.color = GlobalSettings.i.HighlightedColor;
+        if (selected)
+            nameText.color = Color.red;
         else
-            nameText.color = Color.black;*/
+            nameText.color = Color.black;
     }
 
     public void SetMessage(string message)

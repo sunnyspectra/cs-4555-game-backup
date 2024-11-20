@@ -4,31 +4,34 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private Player1Controls control;
+    private Player1Controls control1;
+    private Player2Controls control2;
 
-    Sprite sprite;
+    private Sprite sprite;
     public float speed;
     public Rigidbody rb;
     private Animator anim;
     private Vector3 localScale;
     private Vector3 moveDirection;
 
-    //private Character character;
+    private int playerId;
 
     private void Awake()
     {
-        //character = GetComponent<Character>();
-        control = new Player1Controls();
+        control1 = new Player1Controls();
+        control2 = new Player2Controls();
     }
 
     private void OnEnable()
     {
-        control.Enable();
+        control1.Enable();
+        control2.Enable();
     }
 
     private void OnDisable()
     {
-        control.Disable();
+        control1.Disable();
+        control2.Disable();
     }
 
     void Start()
@@ -38,67 +41,62 @@ public class PlayerController : MonoBehaviour
         anim = GetComponent<Animator>();
     }
 
+    public void SetPlayer(int id)
+    {
+        playerId = id;
+    }
+
     public void HandleUpdate()
     {
-        // Read input from the control system
-        Vector2 input = control.Player.Move.ReadValue<Vector2>();
-        moveDirection = new Vector3(input.x, 0, input.y).normalized;
+        Vector2 input = Vector2.zero;
 
-        // Handle animation state
+        if (playerId == 1)
+        {
+            input = control1.Player.Move.ReadValue<Vector2>();
+        }
+        else if (playerId == 2)
+        {
+            input = control2.Player2.Move2.ReadValue<Vector2>();
+        }
+
+        moveDirection = new Vector3(input.x, 0, input.y).normalized;
         anim.SetBool("isRun", moveDirection.magnitude > 0);
 
-        // Handle sprite flipping based on left/right movement
         if (input.x != 0)
         {
-            float facingDirection = Mathf.Sign(input.x); // 1 for right, -1 for left
+            float facingDirection = Mathf.Sign(input.x);
             transform.localScale = new Vector3(
                 Mathf.Abs(localScale.x) * facingDirection, localScale.y, localScale.z);
         }
 
-        if (Input.GetKeyDown(KeyCode.Z))
+        if (playerId == 1 && Input.GetKeyDown(KeyCode.Z))
+            StartCoroutine(Interact());
+        else if (playerId == 2 && Input.GetKeyDown(KeyCode.N))
             StartCoroutine(Interact());
     }
 
     private void FixedUpdate()
     {
-        // Move the player
         rb.MovePosition(transform.position + moveDirection * speed * Time.fixedDeltaTime);
-    }
-
-
-
-    IPlayerTriggerable currentlyInTrigger;
-    private void OnMoveOver()
-    {
-
     }
 
     IEnumerator Interact()
     {
-        // Check for objects within a small radius
-        Collider[] colliders = Physics.OverlapSphere(transform.position, 1.5f); // Adjust radius if necessary
+        Collider[] colliders = Physics.OverlapSphere(transform.position, 1.5f);
 
         foreach (var collider in colliders)
         {
-            // Try to get the Interactable component
             var interactable = collider.GetComponent<Interactable>();
             if (interactable != null)
             {
                 Debug.Log($"Interacting with {collider.gameObject.name}");
-                yield return interactable.Interact(transform); // Trigger the interaction
-                yield break; // Stop checking after finding one interactable
+                yield return interactable.Interact(transform);
+                yield break; 
             }
         }
 
         Debug.LogWarning("No Interactable component found nearby.");
     }
-
-
-    /*public object CaptureState()
-    {
-
-        return saveData;
-    }*/
 
     public string Name
     {
@@ -109,11 +107,14 @@ public class PlayerController : MonoBehaviour
     {
         get => sprite;
     }
-
-    //public Character Character => character;
 }
 
 public class PlayerSaveData
+{
+    public List<SpiritSaveData> spirits;
+}
+
+public class Player2SaveData
 {
     public List<SpiritSaveData> spirits;
 }

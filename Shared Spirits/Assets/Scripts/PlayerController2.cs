@@ -117,7 +117,7 @@ public class PlayerController2 : MonoBehaviour
     //public Character Character => character;
 }
 
-public class Player2SaveData
+/*public class Player2SaveData
 {
     public List<SpiritSaveData> spirits;
-}
+}*/

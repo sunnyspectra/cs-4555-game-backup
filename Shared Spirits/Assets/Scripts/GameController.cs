@@ -8,7 +8,7 @@ public enum GameState { FreeRoam, Battle, Dialog, Menu, PartyScreen, Bag, Cutsce
 public class GameController : MonoBehaviour
 {
     [SerializeField] PlayerController playerController;
-    [SerializeField] PlayerController2 playerController2;
+    [SerializeField] PlayerController playerController2;
     [SerializeField] Camera worldCamera;
     [SerializeField] BattleSystem battleSystem;
     [SerializeField] PartyScreen partyScreen;
@@ -38,6 +38,8 @@ public class GameController : MonoBehaviour
 
     private void Start()
     {
+        playerController.GetComponent<PlayerController>().SetPlayer(1);
+        playerController2.GetComponent<PlayerController>().SetPlayer(2);
         battleSystem.OnBattleOver += EndBattle;
 
         partyScreen.Init();
@@ -164,6 +166,7 @@ public class GameController : MonoBehaviour
             inventoryUI.HandleUpdate(onBack);
         }
     }
+
 
     public void SetCurrentScene(SceneDetails currScene)
     {

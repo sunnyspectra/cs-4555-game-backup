@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aec393a73d6c4a44aafdc025666a27d9, type: 3}
+  m_Name: Steve
+  m_EditorClassIdentifier: 
+  name: Steve
+  sprite: {fileID: 21300000, guid: 7e082cc2cf2a4433d85e388c6bf94234, type: 3}
+  type1: 1
+  type2: 0
+  maxHp: 110
+  attack: 100
+  defense: 25
+  spAttack: 25
+  spDefense: 25
+  speed: 25
+  expYield: 25
+  learnableMoves:
+  - moveBase: {fileID: 11400000, guid: 961fe281d2401b54e84bb83068db1b23, type: 2}
+    level: 1
+  - moveBase: {fileID: 11400000, guid: 44552df90c8e1634eabe15dd539d45eb, type: 2}
+    level: 3
+  - moveBase: {fileID: 11400000, guid: 429069acf8c0b7c4da3ae0a264835a91, type: 2}
+    level: 10
+  learnableByItems:
+  - {fileID: 11400000, guid: 20e909c6b7042af43ad43490708d757f, type: 2}

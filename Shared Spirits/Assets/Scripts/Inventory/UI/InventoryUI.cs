@@ -129,7 +129,7 @@ public class InventoryUI : MonoBehaviour
                 StartCoroutine(OnMoveToForgetSelected(moveIndex));
             };
 
-            moveSelectionUI.HandleMoveSelection(onMoveSelected);
+            //moveSelectionUI.HandleMoveSelection(onMoveSelected);
         }
     }
 

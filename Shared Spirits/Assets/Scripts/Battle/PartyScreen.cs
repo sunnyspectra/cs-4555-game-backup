@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
+
 public class PartyScreen : MonoBehaviour
 {
     [SerializeField] Text messageText;
@@ -55,6 +57,7 @@ public class PartyScreen : MonoBehaviour
     {
         var prevSelection = selection;
 
+        // Navigate the selection
         if (Input.GetKeyDown(KeyCode.RightArrow))
             ++selection;
         else if (Input.GetKeyDown(KeyCode.LeftArrow))
@@ -64,15 +67,25 @@ public class PartyScreen : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.UpArrow))
             selection -= 2;
 
+        // Clamp to prevent out-of-bounds selection
         selection = Mathf.Clamp(selection, 0, spirits.Count - 1);
 
+        // If selection has changed, update UI
         if (selection != prevSelection)
             UpdateMemberSelection(selection);
 
+        // Select a spirit
         if (Input.GetKeyDown(KeyCode.Z))
         {
+            // Ensure the selected spirit is not fainted
+            if (SelectedMember.HP <= 0)
+            {
+                SetMessageText("You can't send out a fainted Spirit");
+                return;
+            }
             onSelected?.Invoke();
         }
+        // Go back
         else if (Input.GetKeyDown(KeyCode.X))
         {
             onBack?.Invoke();

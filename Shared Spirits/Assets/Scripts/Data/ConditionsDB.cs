@@ -41,6 +41,18 @@ public class ConditionsDB
                 }
             }
         },
+        {
+            ConditionID.brn,
+            new Condition()
+            {
+                Name = "Burn",
+                StartMessage = "has been burned",
+                OnAfterTurn = (Spirit spirit) =>
+                {
+                    spirit.DecreaseHP(spirit.MaxHp / 16);
+                }
+            }
+        }
     };
 
 

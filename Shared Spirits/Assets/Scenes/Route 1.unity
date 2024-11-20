@@ -3925,8 +3925,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0df3f1eef9ad024cb590c51d6bb23ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerController: {fileID: 1085654499}
-  playerController2: {fileID: 2032606014}
+  playerController: {fileID: 1085654503}
+  playerController2: {fileID: 2032606022}
   worldCamera: {fileID: 963194227}
   battleSystem: {fileID: 2051822703}
   partyScreen: {fileID: 2052222022}
@@ -8594,10 +8594,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spirits:
-  - _base: {fileID: 11400000, guid: f3a0e2e77bd707c4d866b8364fca53da, type: 2}
+  - _base: {fileID: 11400000, guid: 39257fbc0c2046642aab73422400d044, type: 2}
     level: 10
   - _base: {fileID: 11400000, guid: f3a0e2e77bd707c4d866b8364fca53da, type: 2}
-    level: 11
+    level: 10
+  - _base: {fileID: 11400000, guid: 39257fbc0c2046642aab73422400d044, type: 2}
+    level: 10
+  - _base: {fileID: 11400000, guid: f3a0e2e77bd707c4d866b8364fca53da, type: 2}
+    level: 10
 --- !u!114 &820321685
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8610,7 +8614,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5da01f217aa51464e8ceb9ca54c2ddd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Jimbob
+  name: Jimboo
   sprite: {fileID: 2159769904527706364, guid: 389d2366e1db64147aa81dd92ed3e4dd, type: 3}
   dialog:
     lines:
@@ -11702,10 +11706,10 @@ GameObject:
   - component: {fileID: 1085654490}
   - component: {fileID: 1085654497}
   - component: {fileID: 1085654498}
-  - component: {fileID: 1085654499}
   - component: {fileID: 1085654502}
   - component: {fileID: 1085654501}
   - component: {fileID: 1085654500}
+  - component: {fileID: 1085654503}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -11801,20 +11805,6 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0.5, z: 0}
---- !u!114 &1085654499
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1085654488}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5db10acd2b410b4aad1476a33548c30, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 10
-  rb: {fileID: 1085654490}
 --- !u!114 &1085654500
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11864,8 +11854,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spirits:
-  - _base: {fileID: 11400000, guid: f3a0e2e77bd707c4d866b8364fca53da, type: 2}
-    level: 5
+  - _base: {fileID: 11400000, guid: 2105ffe64fe15f5499de0f6a2a4b4871, type: 2}
+    level: 12
+  - _base: {fileID: 11400000, guid: 39257fbc0c2046642aab73422400d044, type: 2}
+    level: 11
+--- !u!114 &1085654503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1085654488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5db10acd2b410b4aad1476a33548c30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 10
+  rb: {fileID: 0}
 --- !u!1 &1094721885
 GameObject:
   m_ObjectHideFlags: 0
@@ -21801,10 +21807,10 @@ GameObject:
   - component: {fileID: 2032606017}
   - component: {fileID: 2032606016}
   - component: {fileID: 2032606015}
-  - component: {fileID: 2032606014}
   - component: {fileID: 2032606021}
   - component: {fileID: 2032606020}
   - component: {fileID: 2032606019}
+  - component: {fileID: 2032606022}
   m_Layer: 0
   m_Name: Player2
   m_TagString: Player
@@ -21812,20 +21818,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2032606014
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2032606013}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17af3f489394c5d469953a765350d75c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed2: 10
-  rb2: {fileID: 2032606017}
 --- !u!136 &2032606015
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -21960,8 +21952,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spirits:
+  - _base: {fileID: 11400000, guid: 38fe9476134cbd0438b1ee6ddced9e54, type: 2}
+    level: 11
   - _base: {fileID: 11400000, guid: f3a0e2e77bd707c4d866b8364fca53da, type: 2}
-    level: 6
+    level: 12
+--- !u!114 &2032606022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2032606013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5db10acd2b410b4aad1476a33548c30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 10
+  rb: {fileID: 0}
 --- !u!1 &2033001634
 GameObject:
   m_ObjectHideFlags: 0
