@@ -4,8 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-
-
 public class PartyScreen : MonoBehaviour
 {
     [SerializeField] Text messageText;
@@ -15,6 +13,10 @@ public class PartyScreen : MonoBehaviour
     SpiritParty party;
 
     int selection = 0;
+    KeyCode upKey = KeyCode.W;
+    KeyCode downKey = KeyCode.S;
+    KeyCode acceptKey = KeyCode.Z;
+    KeyCode declineKey = KeyCode.X;
 
     public Spirit SelectedMember => spirits[selection];
 
@@ -23,11 +25,16 @@ public class PartyScreen : MonoBehaviour
     /// </summary>
     public BattleState? CalledFrom { get; set; }
 
-    public void Init()
+    // Initialize the party screen with the correct player's party
+    public void Init(SpiritParty playerParty, KeyCode up, KeyCode down, KeyCode accept, KeyCode decline)
     {
-        memberSlots = GetComponentsInChildren<PartyMemberUI>(true);
+        upKey = up;
+        downKey = down;
+        acceptKey = accept;
+        declineKey = decline;
 
-        party = SpiritParty.GetPlayerParty();
+        memberSlots = GetComponentsInChildren<PartyMemberUI>(true);
+        party = playerParty;
         SetPartyData();
 
         party.OnUpdated += SetPartyData;
@@ -37,6 +44,7 @@ public class PartyScreen : MonoBehaviour
     {
         spirits = party.Spirits;
 
+        // Update the UI for the party members
         for (int i = 0; i < memberSlots.Length; i++)
         {
             if (i < spirits.Count)
@@ -58,26 +66,20 @@ public class PartyScreen : MonoBehaviour
         var prevSelection = selection;
 
         // Navigate the selection
-        if (Input.GetKeyDown(KeyCode.RightArrow))
+        if (Input.GetKeyDown(downKey))
             ++selection;
-        else if (Input.GetKeyDown(KeyCode.LeftArrow))
+        else if (Input.GetKeyDown(upKey))
             --selection;
-        else if (Input.GetKeyDown(KeyCode.DownArrow))
-            selection += 2;
-        else if (Input.GetKeyDown(KeyCode.UpArrow))
-            selection -= 2;
 
         // Clamp to prevent out-of-bounds selection
         selection = Mathf.Clamp(selection, 0, spirits.Count - 1);
 
-        // If selection has changed, update UI
         if (selection != prevSelection)
             UpdateMemberSelection(selection);
 
         // Select a spirit
-        if (Input.GetKeyDown(KeyCode.Z))
+        if (Input.GetKeyDown(acceptKey))
         {
-            // Ensure the selected spirit is not fainted
             if (SelectedMember.HP <= 0)
             {
                 SetMessageText("You can't send out a fainted Spirit");
@@ -86,7 +88,7 @@ public class PartyScreen : MonoBehaviour
             onSelected?.Invoke();
         }
         // Go back
-        else if (Input.GetKeyDown(KeyCode.X))
+        else if (Input.GetKeyDown(declineKey)) // Shared cancel key
         {
             onBack?.Invoke();
         }

@@ -42,7 +42,7 @@ public class GameController : MonoBehaviour
         playerController2.GetComponent<PlayerController>().SetPlayer(2);
         battleSystem.OnBattleOver += EndBattle;
 
-        partyScreen.Init();
+        //partyScreen.Init();
 
         DialogManager.Instance.OnShowDialog += () =>
         {
@@ -94,9 +94,7 @@ public class GameController : MonoBehaviour
 
     HandlerController handler;
     public void StartHandlerBattle(HandlerController handler)
-    {
-
-        Debug.Log($"Interaction runs here");
+    { 
         state = GameState.Battle;
         battleSystem.gameObject.SetActive(true);
         worldCamera.gameObject.SetActive(false);
@@ -165,6 +163,12 @@ public class GameController : MonoBehaviour
 
             inventoryUI.HandleUpdate(onBack);
         }
+    }
+
+    public void ReturnToFree()
+    {
+        worldCamera.gameObject.SetActive(true);
+        state = GameState.FreeRoam;
     }
 
 
